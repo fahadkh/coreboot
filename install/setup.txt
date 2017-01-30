@@ -1,0 +1,70 @@
+    5  sudo apt-get update
+    6  sudo apt-get upgrade
+    7  git clone https://review.coreboot.org/coreboot.git
+    9  cd coreboot/
+   11  make clean
+   12  make
+   13  git submodule update --init --checkout
+   14  make nconfig
+   15  cd payloads/libpayload/
+   17  make menuconfig
+   18  make install
+   21  cd ..
+   22  cd coreinfo/
+   23  make menuconfig
+   24  make
+   37  cd build/
+
+//Experimenting with booting coreinfo   
+   39  cp coreinfo.elf ~/coreboot/payload.elf
+   40  cd ~/coreboot/
+   45  make nconfig
+   48  make
+   50  cd build/
+   52  wget http://www.coreboot.org/images/0/0d/Vgabios-cirrus.zip
+   53  unzip Vgabios-cirrus.zip 
+   55  cd ..
+   57  qemu-system-i386 -L build -hda /dev/zero -serial stdio
+   58  cd ..
+   60  cd coreboot/
+   62  make clean
+   64  make nconfig
+   66  cd build
+   68  wget http://www.coreboot.org/images/0/0d/Vgabios-cirrus.zip
+   69  unzip Vgabios-cirrus.zip 
+   71  mv vgabios-cirrus.bin vgabios.cin
+   73  chmod 777 vgabios.cin 
+   75  mv vgabios.cin vgabios.bin
+   77  cd ..
+   79  qemu-system-i386 -L build -hda /dev/zero -serial stdio
+
+//booting filo/linux
+   80  make clean
+   82  make nconfig
+   85  make
+   89  qemu-img create -f raw disk.img 200m
+   90  mkfs.ext2 -F disk.img 
+   92  sudo su
+
+//was superuser here - mounted disk.img and added linux image
+
+   93  qemu -bios build/coreboot.rom -hda disk.img -nographic
+   94  sudo apt-get install qemu-system-x86
+   95  qemu -bios build/coreboot.rom -hda disk.img -nographic
+   96  qemu-system-x86 -bios build/coreboot.rom -hda disk.img -nographic
+   97  qemu-system-x86_64 -bios build/coreboot.rom -hda disk.img -nographic
+   99  cd coreboot/
+  102  make nconfig
+  103  make clean
+  105  make
+  106  qemu-system-x86_64 -bios build/coreboot.rom -nographic
+  107  cd coreboot/
+  109  qemu-system-i386 -L build -hda /dev/zero -serial stdio
+  110  qemu-system-i386 -L build -hda /dev/zero -nographic
+  111  cd coreboot/
+  113  qemu-system-i386 -bios build/coreboot.rom -hda /dev/zero -serial stdio
+  114  qemu-system-x86_64 -bios build/coreboot.rom -hda /dev/zero -serial stdio
+  115  qemu-system-x86_64 -bios build/coreboot.rom -hda disk.img -serial stdio
+  116  make nconfig
+  117  make
+  118  qemu-system-x86_64 -bios build/coreboot.rom -hda disk.img -serial stdio

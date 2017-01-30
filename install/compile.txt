@@ -1,0 +1,7 @@
+    1  make crosstools-i386
+    2  cd coreboot/
+    3  make crosstools-i386
+    4  git
+    5  apt-get install build-essential flex bison libncurses5-dev wget zlib1g-dev
+    6  sudo apt-get install build-essential flex bison libncurses5-dev wget zlib1g-dev
+    7  make crosstools-i386

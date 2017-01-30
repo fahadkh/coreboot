@@ -9,7 +9,6 @@ defconfig
 .coreboot-version
 .xcompile
 .ccwrap
-build/
 coreboot-builds/
 payloads/coreinfo/lpbuild/
 payloads/coreinfo/lp.config*
@@ -54,7 +53,6 @@ site-local
 *.\#
 *.bin
 *.debug
-*.elf
 *.o
 *.out
 *.pyc
