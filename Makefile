@@ -123,8 +123,11 @@ endif
 ifeq ($(NOCOMPILE),1)
 include $(TOPLEVEL)/Makefile.inc
 include $(TOPLEVEL)/payloads/Makefile.inc
-real-all: config
-
+real-all:
+	@echo "Error: Expected config file ($(DOTCONFIG)) not present." >&2
+	@echo "Please specify a config file or run 'make menuconfig' to" >&2
+	@echo "generate a new config file." >&2
+	@exit 1
 else
 
 include $(DOTCONFIG)
@@ -165,7 +168,7 @@ real-all: real-target
 .SECONDEXPANSION:
 
 $(KCONFIG_AUTOHEADER): $(KCONFIG_CONFIG)
-	$(MAKE) oldconfig
+	+$(MAKE) oldconfig
 
 # Add a new class of source/object files to the build system
 add-class= \

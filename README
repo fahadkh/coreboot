@@ -1,3 +1,9 @@
+# EECS 395 - Kernel Software Dev/Isolated Core Execution
+
+Fork of Coreboot as a tool in attempting isolated core execution on multicore processors.
+
+# Coreboot README follows:
+
 -------------------------------------------------------------------------------
 coreboot README
 -------------------------------------------------------------------------------

@@ -101,8 +101,10 @@ static const struct pad_config gpio_table[] = {
 	PAD_CFG_NF(GPIO_131, UP_2K, DEEP, NF1), /* LPSS_I2C3_SCL */
 
 	/* I2C4 - trackpad */
-	PAD_CFG_NF(GPIO_132, UP_2K, DEEP, NF1), /* LPSS_I2C4_SDA */
-	PAD_CFG_NF(GPIO_133, UP_2K, DEEP, NF1), /* LPSS_I2C4_SCL */
+	/* LPSS_I2C4_SDA */
+	PAD_CFG_NF_IOSSTATE(GPIO_132, UP_2K, DEEP, NF1, HIZCRx1),
+	/* LPSS_I2C4_SCL */
+	PAD_CFG_NF_IOSSTATE(GPIO_133, UP_2K, DEEP, NF1, HIZCRx1),
 
 	/* I2C5 -- pen with external pulls  */
 	PAD_CFG_NF(GPIO_134, NONE, DEEP, NF1), /* LPSS_I2C5_SDA */
@@ -297,7 +299,7 @@ static const struct pad_config gpio_table[] = {
 	PAD_CFG_GPI(GPIO_19, UP_20K, DEEP),	 /* unused */
 	PAD_CFG_GPI_APIC_LOW(GPIO_20, UP_20K, DEEP), /* NFC IRQ */
 	PAD_CFG_GPI_APIC_LOW(GPIO_21, NONE, DEEP), /* Touch IRQ */
-	PAD_CFG_GPI_SCI_LOW(GPIO_22, NONE, DEEP, LEVEL), /* EC wake */
+	PAD_CFG_GPI_SCI_LOW(GPIO_22, NONE, DEEP, EDGE_SINGLE), /* EC wake */
 	PAD_CFG_GPI(GPIO_23, UP_20K, DEEP),	 /* unused */
 	PAD_CFG_GPI(GPIO_24, NONE, DEEP),	 /* PEN_PDCT_ODL */
 	PAD_CFG_GPI(GPIO_25, UP_20K, DEEP),	 /* unused */
