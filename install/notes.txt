@@ -1,0 +1,6 @@
+The sipi vector rmodule is included in the ramstage using 'objdump -B'
+line 119 talks about the SIPI vector and how its loaded from SMM_DEFAULT_BASE - mentions memory range is reserved so OS cannot use it
+284: load_sipi_vector
+216: setup_default_sipi_vector_params - gdt writing
+94: .modules_parameters
+src/arch/x86/gdt.c
